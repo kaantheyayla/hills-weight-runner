@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#1b2a6b">
+<meta name="theme-color" content="#003672">
 <title>Buddy's Perfect Weight Run | Hill's</title>
 <meta name="description" content="Run with Buddy, eat right and bust 3 common dog weight myths. Brought to you by Hill's Science Plan Perfect Weight.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,12 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --red:#d41730; --red-dark:#a90f24; --navy:#1b2a6b; --teal:#1f9e94; --teal-soft:#e3f5f2;
+  --red:#ed1b34; --red-dark:#c4132a; --navy:#003672; --blue:#0054a4; --blue-mid:#1260aa; --blue-light:#6396c9; --blue-soft:#e6eef8;
   --cream:#fffaf1; --ink:#1d2433; --muted:#5b6478; --gold:#f5b324; --card:#ffffff;
   --shadow:0 18px 50px rgba(19,28,64,.28);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:#bfe6f2;font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);
+html,body{height:100%;overflow:hidden;background:#cfe2f3;font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);
   -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;touch-action:none}
 #game{position:fixed;inset:0}
 #game canvas{display:block;width:100%;height:100%}
@@ -25,17 +25,17 @@ button{font-family:inherit;cursor:pointer;border:0}
 
 /* ---------- HUD ---------- */
 #hud{position:fixed;left:0;right:0;top:0;padding:calc(10px + env(safe-area-inset-top)) 14px 0;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;pointer-events:none;z-index:5}
-.pill{background:rgba(255,255,255,.92);border-radius:14px;box-shadow:0 4px 14px rgba(19,28,64,.15);padding:6px 12px;display:flex;align-items:center;gap:8px;font-weight:800}
+.pill{background:rgba(255,255,255,.94);border:2px solid var(--blue-soft);border-radius:14px;box-shadow:0 4px 14px rgba(19,28,64,.15);padding:6px 12px;display:flex;align-items:center;gap:8px;font-weight:800}
 .hud-left{display:flex;flex-direction:column;gap:6px}
 #scoreVal{font-size:22px;font-weight:900;color:var(--navy);min-width:60px}
 .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
-.kib{width:14px;height:11px;border-radius:50%;background:#9a5b2e;box-shadow:inset -2px -2px 0 #6e3d1b;display:inline-block}
-#mult{color:var(--teal);font-size:12px;font-weight:900}
+.kib{width:14px;height:12px;border-radius:35%;background:radial-gradient(circle at 35% 30%,#e3b06c,#c98c45 55%,#a8692c);box-shadow:0 1px 0 rgba(0,0,0,.15);display:inline-block}
+#mult{color:var(--blue);font-size:12px;font-weight:900}
 .hud-center{flex:1;max-width:340px;display:flex;flex-direction:column;align-items:center}
 .meter-wrap{width:100%;padding:7px 12px 9px}
 .meter-head{display:flex;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
 .meter-head b{color:var(--navy)}
-.meter{position:relative;height:12px;border-radius:8px;background:linear-gradient(90deg,#3cc28a 0%,#3cc28a 22%,#f5c63a 45%,#f08a2c 70%,#d41730 100%)}
+.meter{position:relative;height:12px;border-radius:8px;background:linear-gradient(90deg,#3cc28a 0%,#3cc28a 22%,#f5c63a 45%,#f08a2c 70%,#ed1b34 100%)}
 #meterMark{position:absolute;top:50%;width:22px;height:22px;margin-left:-11px;margin-top:-11px;border-radius:50%;background:#fff;border:3px solid var(--navy);transition:left .25s ease;display:grid;place-items:center;font-size:11px}
 .hud-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 #hearts{display:flex;gap:3px}
@@ -44,23 +44,23 @@ button{font-family:inherit;cursor:pointer;border:0}
 #mythSlots img{width:24px;height:24px;object-fit:contain;filter:grayscale(1);opacity:.35;transition:all .4s}
 #mythSlots img.on{filter:none;opacity:1;transform:scale(1.1)}
 .hud-btns{display:flex;gap:6px;pointer-events:auto}
-.icon-btn{width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(19,28,64,.15);font-weight:900;color:var(--navy);font-size:15px;display:grid;place-items:center}
+.icon-btn{width:36px;height:36px;border-radius:12px;background:var(--blue);color:#fff!important;box-shadow:0 4px 14px rgba(19,28,64,.15);font-weight:900;color:var(--navy);font-size:15px;display:grid;place-items:center}
 .icon-btn svg{width:18px;height:18px}
 
 /* ---------- speech bubble ---------- */
-#bubble{position:fixed;z-index:8;width:min(400px,calc(100vw - 24px));background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:16px 18px 16px;border:3px solid var(--navy);
+#bubble{position:fixed;z-index:8;width:min(400px,calc(100vw - 24px));background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:16px 18px 16px;border:3px solid var(--blue);
   transform-origin:50% 100%;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
 @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
-#bubble .tail{position:absolute;bottom:-16px;width:26px;height:26px;background:var(--card);border-right:3px solid var(--navy);border-bottom:3px solid var(--navy);transform:rotate(45deg);margin-left:-13px}
+#bubble .tail{position:absolute;bottom:-16px;width:26px;height:26px;background:var(--card);border-right:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(45deg);margin-left:-13px}
 .b-who{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.1em;padding:3px 8px;border-radius:6px;color:#fff;background:var(--red)}
-.tag.fact{background:var(--teal)}
+.tag.fact{background:var(--blue)}
 .b-myth{position:relative;font-size:17px;font-weight:800;line-height:1.3;margin:6px 0 10px;color:var(--ink)}
 .b-myth s{text-decoration-color:var(--red);text-decoration-thickness:3px}
 .stamp{position:absolute;right:-4px;top:-10px;transform:rotate(-12deg);border:3px solid var(--red);color:var(--red);font-weight:900;font-size:13px;padding:1px 6px;border-radius:6px;letter-spacing:.08em;background:rgba(255,255,255,.85);animation:stamp .4s .35s both cubic-bezier(.2,1.6,.4,1)}
 @keyframes stamp{from{transform:rotate(-12deg) scale(2.4);opacity:0}to{transform:rotate(-12deg) scale(1);opacity:1}}
-.b-fact{background:var(--teal-soft);border-radius:14px;padding:10px 12px;margin-bottom:10px}
-.b-fact p{font-size:14.5px;line-height:1.45;font-weight:700;margin-top:6px;color:#163b38}
+.b-fact{background:var(--blue-soft);border-radius:14px;padding:10px 12px;margin-bottom:10px}
+.b-fact p{font-size:14.5px;line-height:1.45;font-weight:700;margin-top:6px;color:var(--navy)}
 .b-prod{display:flex;gap:10px;align-items:center;margin-bottom:12px}
 .b-prod img{width:52px;height:52px;object-fit:contain;flex:none}
 .b-prod p{font-size:12.5px;line-height:1.35;color:var(--muted);font-weight:700}
@@ -69,11 +69,11 @@ button{font-family:inherit;cursor:pointer;border:0}
 .btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--red-dark)}
 .btn.block{width:100%}
 .btn.ghost{background:#fff;color:var(--navy);box-shadow:0 5px 0 #c9cfe3;border:2px solid #dfe3f0}
-.btn.teal{background:var(--teal);box-shadow:0 5px 0 #157a72}
+.btn.blue{background:var(--blue);box-shadow:0 5px 0 var(--navy)}
 .hint{font-size:11px;color:var(--muted);text-align:center;margin-top:7px;font-weight:700}
 
 /* ---------- overlays ---------- */
-.overlay{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(27,42,107,.35);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);overflow-y:auto;touch-action:pan-y}
+.overlay{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,54,114,.4);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);overflow-y:auto;touch-action:pan-y}
 .card{background:var(--cream);border-radius:26px;box-shadow:var(--shadow);width:min(560px,100%);padding:26px 24px 22px;margin:auto;animation:pop .4s cubic-bezier(.2,1.3,.4,1)}
 .eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
 h1{font-size:clamp(28px,6vw,38px);line-height:1.05;font-weight:900;color:var(--navy);margin:6px 0 10px}
@@ -101,9 +101,9 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
 .recap-item .m s{text-decoration-color:var(--red);text-decoration-thickness:2px}
 .recap-item p{font-size:13px;line-height:1.4;color:#3a4256;font-weight:700}
 .badge{font-size:10px;font-weight:900;letter-spacing:.06em;padding:3px 7px;border-radius:6px;text-transform:uppercase;white-space:nowrap}
-.badge.ok{background:var(--teal-soft);color:var(--teal)}
+.badge.ok{background:var(--blue-soft);color:var(--blue)}
 .badge.miss{background:#fde8eb;color:var(--red)}
-.cta{display:flex;gap:14px;align-items:center;background:#fff;border-radius:18px;padding:14px;border:2px solid var(--teal);margin-bottom:14px}
+.cta{display:flex;gap:14px;align-items:center;background:#fff;border-radius:18px;padding:14px;border:2px solid var(--blue);margin-bottom:14px}
 .cta img{width:96px;height:96px;object-fit:contain;flex:none}
 .cta h3{font-size:16px;color:var(--navy);font-weight:900;line-height:1.2}
 .cta p{font-size:13px;color:var(--muted);font-weight:700;line-height:1.35;margin:4px 0 10px}
@@ -114,10 +114,10 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
 /* ---------- floating text / toast ---------- */
 .float{position:fixed;z-index:6;pointer-events:none;font-weight:900;font-size:18px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.25),0 0 10px rgba(0,0,0,.2);transform:translate(-50%,-50%);animation:floatUp 1.1s ease-out forwards;white-space:nowrap}
 .float.bad{color:#fff;background:var(--red);padding:3px 10px;border-radius:10px;text-shadow:none;font-size:15px}
-.float.good{color:#fff;background:var(--teal);padding:3px 10px;border-radius:10px;text-shadow:none;font-size:15px}
+.float.good{color:#fff;background:var(--blue);padding:3px 10px;border-radius:10px;text-shadow:none;font-size:15px}
 @keyframes floatUp{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}15%{opacity:1;transform:translate(-50%,-60%) scale(1.05)}100%{opacity:0;transform:translate(-50%,-200%) scale(1)}}
-#toast{position:fixed;z-index:7;left:50%;top:calc(110px + env(safe-area-inset-top));transform:translateX(-50%);width:min(420px,calc(100vw - 24px));background:#fff;border-left:6px solid var(--teal);border-radius:14px;box-shadow:var(--shadow);padding:10px 14px;font-weight:800;font-size:14px;line-height:1.35;color:var(--ink);pointer-events:none;animation:pop .3s ease-out}
-#toast b{color:var(--teal)}
+#toast{position:fixed;z-index:7;left:50%;top:calc(110px + env(safe-area-inset-top));transform:translateX(-50%);width:min(420px,calc(100vw - 24px));background:#fff;border-left:6px solid var(--blue);border-radius:14px;box-shadow:var(--shadow);padding:10px 14px;font-weight:800;font-size:14px;line-height:1.35;color:var(--ink);pointer-events:none;animation:pop .3s ease-out}
+#toast b{color:var(--blue)}
 #err{position:fixed;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font-weight:800;color:var(--navy);background:var(--cream);z-index:50}
 
 @media (hover:none){ #bHint{display:none} }
@@ -232,7 +232,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
       <div>
         <h3 id="ctaName"></h3>
         <p id="ctaClaim"></p>
-        <a class="btn teal" id="ctaBtn" target="_blank" rel="noopener"></a>
+        <a class="btn blue" id="ctaBtn" target="_blank" rel="noopener"></a>
       </div>
     </div>
     <div class="btn-row">
@@ -289,6 +289,7 @@ const TIPS = [
    ===================================================================== */
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
+const DEBUG_ZOOM = +params.get('zoom') || 1; // review aid: ?zoom=2 for a close-up
 document.querySelectorAll('.prod-img').forEach(img => img.src = CONFIG.productImage);
 $('ctaName').textContent = CONFIG.productName;
 $('ctaClaim').textContent = CONFIG.productClaim;
@@ -310,7 +311,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 $('game').appendChild(renderer.domElement);
 
-const SKY = 0xbfe6f2;
+const SKY = 0xcfe2f3;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(SKY);
 scene.fog = new THREE.Fog(SKY, 42, 82);
@@ -408,40 +409,66 @@ scene.add(road);
 /* =====================================================================
    Dog
    ===================================================================== */
-const FUR = 0xeea23a, FUR_DARK = 0xc2741f, CREAM = 0xf6ead6, BLACK = 0x222226;
+// Smooth-shaded golden retriever (rounded shapes, jointed legs) so Buddy reads as a real dog.
+const FUR = 0xdc9a4c, FUR_DARK = 0xb8732f, CREAM = 0xf2dcb3, BLACK = 0x1c1c22;
+const furMats = new Map();
+function furMat(color, rough = 0.85) {
+  const k = `${color}-${rough}`;
+  if (!furMats.has(k)) furMats.set(k, new THREE.MeshStandardMaterial({ color, roughness: rough, metalness: 0 }));
+  return furMats.get(k);
+}
+const sph = (r, ws = 20, hs = 14) => geo(`s${r},${ws}`, () => new THREE.SphereGeometry(r, ws, hs));
+const cap = (r, l) => geo(`p${r},${l}`, () => new THREE.CapsuleGeometry(r, l, 6, 14));
+function soft(g, color, x = 0, y = 0, z = 0, parent, rough) {
+  const m = new THREE.Mesh(g, furMat(color, rough));
+  m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true;
+  if (parent) parent.add(m);
+  return m;
+}
 function buildDog() {
   const g = new THREE.Group();
-  const bodyPivot = new THREE.Group(); bodyPivot.position.y = 0.95; g.add(bodyPivot);
+  const bodyPivot = new THREE.Group(); bodyPivot.position.y = 0.98; g.add(bodyPivot);
   const body = new THREE.Group(); bodyPivot.add(body);
-  part(box(0.9, 0.75, 1.6), FUR, 0, 0, 0, body);
-  part(box(0.72, 0.18, 1.3), CREAM, 0, -0.33, -0.05, body);
-  part(box(0.66, 0.5, 0.1), CREAM, 0, -0.05, -0.79, body); // chest
+  soft(cap(0.36, 0.8), FUR, 0, 0, 0, body).rotation.x = Math.PI / 2;      // torso
+  soft(sph(0.42), FUR, 0, 0.04, -0.46, body).scale.set(1, 1.02, 1);          // chest
+  soft(sph(0.39), FUR, 0, 0.04, 0.46, body);                                 // rump
+  soft(sph(0.3), CREAM, 0, -0.12, -0.66, body).scale.set(0.95, 1.05, 0.7);  // cream chest
+  soft(cap(0.24, 0.6), CREAM, 0, -0.2, -0.05, body).rotation.x = Math.PI / 2; // belly
+  const neck = soft(cap(0.23, 0.32), FUR, 0, 0.3, -0.72, bodyPivot); neck.rotation.x = -0.65;
+  const collar = soft(geo('collar', () => new THREE.TorusGeometry(0.235, 0.045, 8, 22)), 0x0054a4, 0, 0.24, -0.7, bodyPivot, 0.5);
+  collar.rotation.x = Math.PI / 2 - 0.65;
+  soft(geo('tag', () => new THREE.CylinderGeometry(0.06, 0.06, 0.02, 12)), 0xed1b34, 0, 0.06, -0.88, bodyPivot, 0.4).rotation.x = Math.PI / 2;
 
-  const head = new THREE.Group(); head.position.set(0, 0.5, -0.9); bodyPivot.add(head);
-  part(box(0.84, 0.76, 0.8), FUR, 0, 0.04, 0, head);
-  part(box(0.5, 0.34, 0.56), CREAM, 0, -0.14, -0.6, head);
-  part(box(0.22, 0.16, 0.12), BLACK, 0, 0.0, -0.9, head);
-  part(box(0.13, 0.15, 0.06), BLACK, -0.22, 0.14, -0.41, head);
-  part(box(0.13, 0.15, 0.06), BLACK, 0.22, 0.14, -0.41, head);
-  part(box(0.05, 0.05, 0.02), 0xffffff, -0.19, 0.18, -0.445, head);
-  part(box(0.05, 0.05, 0.02), 0xffffff, 0.25, 0.18, -0.445, head);
-  const tongue = part(box(0.17, 0.05, 0.26), 0xf07d92, 0, -0.34, -0.72, head);
-  const earL = part(box(0.16, 0.56, 0.36), FUR_DARK, -0.47, -0.08, 0.04, head); earL.rotation.z = 0.22;
-  const earR = part(box(0.16, 0.56, 0.36), FUR_DARK, 0.47, -0.08, 0.04, head); earR.rotation.z = -0.22;
-  head.scale.setScalar(1.08);
-  part(box(0.8, 0.14, 0.34), 0xd41730, 0, 0.18, -0.72, bodyPivot); // collar
-  part(box(0.12, 0.14, 0.04), 0xf5b324, 0, 0.06, -0.9, bodyPivot); // tag
+  const head = new THREE.Group(); head.position.set(0, 0.62, -1.0); bodyPivot.add(head);
+  soft(sph(0.32), FUR, 0, 0, 0, head).scale.set(1, 0.95, 1.08);                     // skull
+  soft(sph(0.13), FUR, 0, 0.12, -0.2, head).scale.set(1.6, 0.6, 1);                 // brow
+  const muzzle = soft(cap(0.15, 0.2), CREAM, 0, -0.1, -0.33, head); muzzle.rotation.x = Math.PI / 2;
+  muzzle.scale.set(1, 0.85, 1);
+  soft(sph(0.075), BLACK, 0, -0.04, -0.57, head, 0.3).scale.set(1.35, 1, 1);        // nose
+  for (const sx of [-1, 1]) {
+    soft(sph(0.05, 12, 10), BLACK, sx * 0.14, 0.07, -0.26, head, 0.2);              // eyes
+    soft(sph(0.016, 8, 6), 0xffffff, sx * 0.14 + 0.015, 0.09, -0.305, head, 0.2);   // eye shine
+  }
+  const tongue = soft(sph(0.08), 0xf27b8f, 0, -0.22, -0.44, head, 0.5); tongue.scale.set(0.9, 0.35, 1.3);
+  const earL = soft(sph(0.18), FUR_DARK, -0.3, -0.06, 0.02, head); earL.scale.set(0.38, 1.15, 0.85); earL.rotation.z = 0.28;
+  const earR = soft(sph(0.18), FUR_DARK, 0.3, -0.06, 0.02, head); earR.scale.set(0.38, 1.15, 0.85); earR.rotation.z = -0.28;
 
-  const tail = new THREE.Group(); tail.position.set(0, 0.25, 0.8); bodyPivot.add(tail);
-  part(box(0.13, 0.13, 0.62), FUR, 0, 0, 0.3, tail);
-  tail.rotation.x = 0.7;
+  const tail = new THREE.Group(); tail.position.set(0, 0.18, 0.8); bodyPivot.add(tail);
+  const t1 = soft(cap(0.075, 0.32), FUR, 0, 0, 0.22, tail); t1.rotation.x = Math.PI / 2;
+  const t2 = soft(cap(0.06, 0.26), FUR_DARK, 0, 0.02, 0.5, tail); t2.rotation.x = Math.PI / 2 + 0.25;
+  tail.rotation.x = 0.8;
 
+  // legs: hip/shoulder pivot -> upper leg -> knee pivot -> lower leg + paw
   const legs = [];
   for (const [lx, lz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
-    const pivot = new THREE.Group(); pivot.position.set(lx * 0.28, 0.62, lz * 0.55); g.add(pivot);
-    part(box(0.22, 0.6, 0.22), FUR, 0, -0.3, 0, pivot);
-    part(box(0.26, 0.1, 0.3), CREAM, 0, -0.57, -0.03, pivot);
-    pivot.userData.side = lx; legs.push(pivot);
+    const front = lz < 0;
+    const pivot = new THREE.Group(); pivot.position.set(lx * 0.22, 0.74, lz * 0.5); g.add(pivot);
+    soft(cap(front ? 0.12 : 0.15, 0.22), FUR, 0, -0.17, 0, pivot);
+    const knee = new THREE.Group(); knee.position.y = -0.36; pivot.add(knee);
+    soft(cap(0.085, 0.2), front ? CREAM : FUR, 0, -0.14, 0, knee);
+    soft(sph(0.1, 12, 10), CREAM, 0, -0.32, -0.04, knee).scale.set(1, 0.6, 1.35);
+    pivot.userData = { side: lx, knee, front };
+    legs.push(pivot);
   }
   scene.add(g);
   return { g, bodyPivot, body, head, tail, legs, tongue, earL, earR };
@@ -495,21 +522,24 @@ function makeFlowers() {
 }
 function makeLamp() {
   const g = new THREE.Group();
-  part(cyl(0.06, 0.09, 2.4, 6), 0x34405e, 0, 1.2, 0, g);
+  part(cyl(0.06, 0.09, 2.4, 6), 0x003672, 0, 1.2, 0, g);
   part(box(0.32, 0.32, 0.32), 0xfff1b0, 0, 2.5, 0, g);
-  part(cone(0.3, 0.2, 4), 0x34405e, 0, 2.76, 0, g).rotation.y = Math.PI / 4;
+  part(cone(0.3, 0.2, 4), 0x003672, 0, 2.76, 0, g).rotation.y = Math.PI / 4;
+  part(box(0.04, 0.9, 0.5), 0x0054a4, 0, 1.75, -0.3, g); // Hill's blue banner
+  part(box(0.05, 0.09, 0.5), 0xffffff, 0, 1.5, -0.3, g);
+  part(box(0.05, 0.09, 0.5), 0xed1b34, 0, 1.38, -0.3, g);
   return g;
 }
 function makeKennel() {
   const g = new THREE.Group();
-  part(box(1.2, 0.9, 1.2), 0xd41730, 0, 0.45, 0, g);
-  const roof = part(cone(1.05, 0.6, 4), 0x1b2a6b, 0, 1.2, 0, g); roof.rotation.y = Math.PI / 4;
+  part(box(1.2, 0.9, 1.2), 0xed1b34, 0, 0.45, 0, g);
+  const roof = part(cone(1.05, 0.6, 4), 0x0054a4, 0, 1.2, 0, g); roof.rotation.y = Math.PI / 4;
   part(box(0.5, 0.55, 0.05), 0x3a2418, 0.61, 0.32, 0, g).rotation.y = Math.PI / 2;
   return g;
 }
 function makeFence() {
   const g = new THREE.Group();
-  part(box(0.14, 0.8, 0.14), 0xffffff, 0, 0.4, 0, g);
+  part(box(0.14, 0.8, 0.14), 0x0054a4, 0, 0.4, 0, g);
   part(box(0.07, 0.09, 2.5), 0xf3efe6, 0, 0.6, -1.25, g);
   part(box(0.07, 0.09, 2.5), 0xf3efe6, 0, 0.3, -1.25, g);
   return g;
@@ -553,11 +583,48 @@ const LANES = [-2.2, 0, 2.2];
 const SPAWN_Z = -64;
 const entities = [];
 
+// Kibble modelled on real dry food: golden, rounded "pillow" pieces with a crumbly speckle.
+function roundedBox(w, h, d, rad, seg = 4) {
+  return geo(`rb${w},${h},${d},${rad}`, () => {
+    const g = new THREE.BoxGeometry(w, h, d, seg * 2, seg * 2, seg * 2);
+    const pos = g.attributes.position, nor = g.attributes.normal;
+    const hx = w / 2 - rad, hy = h / 2 - rad, hz = d / 2 - rad;
+    const v = new THREE.Vector3(), c = new THREE.Vector3(), clamp = THREE.MathUtils.clamp;
+    for (let i = 0; i < pos.count; i++) {
+      v.fromBufferAttribute(pos, i);
+      c.set(clamp(v.x, -hx, hx), clamp(v.y, -hy, hy), clamp(v.z, -hz, hz));
+      v.sub(c).normalize();
+      nor.setXYZ(i, v.x, v.y, v.z);
+      pos.setXYZ(i, c.x + v.x * rad, c.y + v.y * rad, c.z + v.z * rad);
+    }
+    return g;
+  });
+}
+const kibbleTex = canvasTex(128, 128, (x, w, h) => {
+  x.fillStyle = '#d9a35e'; x.fillRect(0, 0, w, h);
+  for (let i = 0; i < 900; i++) {
+    const t = Math.random();
+    x.fillStyle = t < .45 ? 'rgba(176,118,58,.5)' : t < .8 ? 'rgba(240,200,140,.6)' : 'rgba(130,82,36,.45)';
+    const sz = 1 + Math.random() * 2.5;
+    x.fillRect(Math.random() * w, Math.random() * h, sz, sz);
+  }
+});
+const kibbleMats = [0xffffff, 0xf6e6cf, 0xead2ae].map(color =>
+  new THREE.MeshStandardMaterial({ color, map: kibbleTex, bumpMap: kibbleTex, bumpScale: 0.6, roughness: 0.95 }));
+const KIBBLE_PIECES = [[-0.17, 0, 0.06], [0.17, 0, 0.1], [0.02, 0, -0.17], [0, 0.22, 0]];
 function makeKibble() {
   const g = new THREE.Group();
-  const k = part(cyl(0.24, 0.24, 0.16, 7), 0x9a5b2e, 0, 0, 0, g);
-  k.rotation.x = Math.PI / 2.4;
-  part(cyl(0.1, 0.1, 0.17, 5), 0x6e3d1b, 0, 0, 0, k);
+  const n = Math.random() < 0.5 ? 3 : 4;
+  for (let i = 0; i < n; i++) {
+    const [x, y, z] = KIBBLE_PIECES[i];
+    const m = new THREE.Mesh(roundedBox(0.36, 0.27, 0.32, 0.11), pick(kibbleMats));
+    m.position.set(x, y - 0.1, z);
+    m.rotation.set(rand(-0.3, 0.3), rand(0, Math.PI), rand(-0.3, 0.3));
+    m.scale.setScalar(rand(0.9, 1.1));
+    m.castShadow = true;
+    g.add(m);
+  }
+  g.scale.setScalar(1.2);
   return g;
 }
 function makeBurger() {
@@ -586,7 +653,7 @@ function makeCupcake() {
   const g = new THREE.Group();
   part(cyl(0.3, 0.22, 0.32, 8), 0xf5a3c0, 0, 0.16, 0, g);
   part(ico(0.34), 0xfff4e0, 0, 0.44, 0, g).scale.y = 0.7;
-  part(ico(0.1), 0xd41730, 0, 0.7, 0, g);
+  part(ico(0.1), 0xed1b34, 0, 0.7, 0, g);
   return g;
 }
 function makeHydrant() {
@@ -618,16 +685,20 @@ function makeCrate() {
 const productTex = new THREE.TextureLoader().load(CONFIG.productImage);
 productTex.colorSpace = THREE.SRGBColorSpace;
 const productMat = new THREE.SpriteMaterial({ map: productTex, transparent: true, alphaTest: 0.05, fog: false });
-const ringMat = new THREE.MeshBasicMaterial({ color: 0x2fd1c2, transparent: true, opacity: 0.75, side: THREE.DoubleSide });
+const ringMat = new THREE.MeshBasicMaterial({ color: 0x0054a4, transparent: true, opacity: 0.8, side: THREE.DoubleSide });
+const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x6396c9, transparent: true, opacity: 0.55, side: THREE.DoubleSide });
+const PRODUCT_Y = 1.85;
 function makeProduct() {
   const g = new THREE.Group();
-  const s = new THREE.Sprite(productMat); s.scale.set(2.3, 2.3, 1); s.position.y = 1.35; g.add(s);
-  const ring = new THREE.Mesh(geo('ring', () => new THREE.RingGeometry(0.85, 1.1, 24)), ringMat);
+  const s = new THREE.Sprite(productMat); s.scale.set(3.6, 3.6, 1); s.position.y = PRODUCT_Y; g.add(s);
+  const ring = new THREE.Mesh(geo('ring', () => new THREE.RingGeometry(1.2, 1.5, 32)), ringMat);
   ring.rotation.x = -Math.PI / 2; ring.position.y = 0.05; g.add(ring);
+  const glow = new THREE.Mesh(geo('ring2', () => new THREE.CircleGeometry(1.2, 32)), ringMat2);
+  glow.rotation.x = -Math.PI / 2; glow.position.y = 0.04; g.add(glow);
   const stars = new THREE.Group(); g.add(stars);
   for (let i = 0; i < 4; i++) {
     const st = new THREE.Mesh(geo('oct', () => new THREE.OctahedronGeometry(0.13, 0)), new THREE.MeshBasicMaterial({ color: 0xffd34d }));
-    const a = i / 4 * Math.PI * 2; st.position.set(Math.cos(a) * 1.1, 1.3, Math.sin(a) * 1.1); stars.add(st);
+    const a = i / 4 * Math.PI * 2; st.position.set(Math.cos(a) * 1.6, 1.9, Math.sin(a) * 1.6); stars.add(st);
   }
   g.userData = { sprite: s, ring, stars };
   return g;
@@ -805,11 +876,11 @@ function updateHUD(force) {
   const s = Math.floor(G.score);
   if (force || lastHud.s !== s) $('scoreVal').textContent = s;
   if (force || lastHud.k !== G.kibbles) $('kibVal').textContent = G.kibbles;
-  if (force || lastHud.h !== G.hearts) $('hearts').innerHTML = Array.from({ length: MAX_HEARTS }, (_, i) => PAW(i < G.hearts ? '#d41730' : '#d5d9e6')).join('');
+  if (force || lastHud.h !== G.hearts) $('hearts').innerHTML = Array.from({ length: MAX_HEARTS }, (_, i) => PAW(i < G.hearts ? '#ed1b34' : '#d5d9e6')).join('');
   const wr = Math.round(G.weight);
   if (force || lastHud.w !== wr) {
     $('meterMark').style.left = `${Math.max(2, Math.min(98, G.weight))}%`;
-    $('meterMark').style.borderColor = G.weight < HEALTHY ? '#1f9e94' : G.weight < 65 ? '#e39b1c' : '#d41730';
+    $('meterMark').style.borderColor = G.weight < HEALTHY ? '#0054a4' : G.weight < 65 ? '#e39b1c' : '#ed1b34';
     $('mult').classList.toggle('hidden', G.weight >= HEALTHY);
   }
   if (force || lastHud.m !== G.mythsFound) [...$('mythSlots').children].forEach((img, i) => img.classList.toggle('on', i < G.mythsFound));
@@ -883,19 +954,19 @@ function collect(e, i) {
   const pos = e.obj.position.clone(); pos.y += 0.4;
   if (e.cat === 'kibble') {
     G.kibbles++; G.score += 10 * mult;
-    burst(pos, 0xb06a33, 5, 3);
+    burst(pos, 0xc98c45, 5, 3);
     Sound.kibble();
   } else if (e.cat === 'junk') {
     G.weight = Math.min(100, G.weight + 16);
     G.score = Math.max(0, G.score - 20);
-    burst(pos, 0xd41730, 10, 4);
+    burst(pos, 0xed1b34, 10, 4);
     Sound.junk();
     floatText(pick(['+ Weight! Scraps add up', '+ Weight! Too many treats', '+ Weight! Empty calories']), 'bad');
     if (G.weight >= 100) gameOver('weight');
   } else if (e.cat === 'product') {
     G.weight = Math.max(0, G.weight - 30);
     G.score += 250 * mult;
-    burst(pos.setY(1.4), 0x2fd1c2, 18, 6); burst(pos, 0xffd34d, 12, 5);
+    burst(pos.setY(1.8), 0x0054a4, 18, 6); burst(pos, 0x6396c9, 10, 5); burst(pos, 0xffd34d, 12, 5);
     Sound.bag();
     if (G.mythsFound < MYTHS.length) {
       G.found.push(G.mythsFound);
@@ -940,7 +1011,7 @@ function showOverScreen() {
     <div class="recap-item">
       <div class="row"><span class="m">Myth: <s>${m.myth}</s></span>
       <span class="badge ${i < G.mythsFound ? 'ok' : 'miss'}">${i < G.mythsFound ? '✓ Busted' : 'Missed'}</span></div>
-      <p><b style="color:var(--teal)">Fact:</b> ${m.fact}</p>
+      <p><b style="color:var(--blue)">Fact:</b> ${m.fact}</p>
     </div>`).join('');
   $('hud').classList.add('hidden');
   $('toast').classList.add('hidden');
@@ -1051,7 +1122,7 @@ function updateEntities(dz, dt, t) {
       o.rotation.y = t * 1.8 + e.seed; o.position.y = e.y + Math.abs(Math.sin(t * 4 + e.seed)) * 0.15;
     } else if (e.cat === 'product') {
       const u = o.userData;
-      u.sprite.position.y = 1.35 + Math.sin(t * 3) * 0.15;
+      u.sprite.position.y = PRODUCT_Y + Math.sin(t * 3) * 0.15;
       u.ring.scale.setScalar(1 + Math.sin(t * 5) * 0.12);
       u.stars.rotation.y = t * 2;
     }
@@ -1074,7 +1145,7 @@ function updateDog(dt, t) {
   // body shape follows weight
   dog.body.scale.set(1 + 0.8 * w, 1 + 0.4 * w, 1 + 0.12 * w);
   dog.body.position.y = -0.1 * w;
-  for (const l of dog.legs) l.position.x = l.userData.side * (0.28 + 0.3 * w);
+  for (const l of dog.legs) l.position.x = l.userData.side * (0.22 + 0.28 * w);
 
   dog.g.position.set(G.x, G.y, 0);
   dog.g.rotation.y = (G.x - LANES[G.lane]) * 0.25;
@@ -1083,13 +1154,19 @@ function updateDog(dt, t) {
   if (running) G.phase += dt * (6 + spd * 0.55) * (1 - 0.25 * w);
   const ph = G.phase;
   if (running && G.y > 0.05) {
-    dog.legs.forEach((l, i) => l.rotation.x = i < 2 ? -0.9 : 0.9);
+    dog.legs.forEach((l, i) => { l.rotation.x = i < 2 ? -1.0 : 0.9; l.userData.knee.rotation.x = i < 2 ? -1.3 : 1.0; });
     dog.bodyPivot.rotation.x = Math.max(-0.35, Math.min(0.35, -G.vy * 0.03));
   } else if (running) {
-    dog.legs.forEach((l, i) => l.rotation.x = Math.sin(ph + (i === 0 || i === 3 ? 0 : Math.PI)) * 0.85);
+    dog.legs.forEach((l, i) => {
+      const a = ph + (i === 0 || i === 3 ? 0 : Math.PI);
+      l.rotation.x = Math.sin(a) * 0.75;
+      // bend the lower leg while it swings forward
+      const lift = Math.max(0, Math.cos(a));
+      l.userData.knee.rotation.x = l.userData.front ? -lift * 1.1 : lift * 0.9;
+    });
     dog.bodyPivot.rotation.x = Math.sin(ph * 2) * 0.04;
   } else {
-    dog.legs.forEach(l => l.rotation.x *= 0.85);
+    dog.legs.forEach(l => { l.rotation.x *= 0.85; l.userData.knee.rotation.x *= 0.85; });
     dog.bodyPivot.rotation.x *= 0.85;
   }
   dog.bodyPivot.position.y = 0.95 + (running && G.y <= 0.05 ? Math.abs(Math.sin(ph)) * 0.09 : 0);
@@ -1134,7 +1211,7 @@ function tick(dt) {
 
   // camera follow, zoom in for myth bubble, shake on hit
   camTarget.x += (camBaseX + G.x * 0.55 - camTarget.x) * Math.min(1, dt * 4);
-  const zoomTo = G.state === 'myth' ? 1.25 : 1;
+  const zoomTo = (G.state === 'myth' ? 1.25 : 1) * DEBUG_ZOOM;
   camera.zoom += (zoomTo - camera.zoom) * Math.min(1, dt * 4);
   camera.updateProjectionMatrix();
   camera.position.copy(camTarget).add(CAM_OFFSET);
@@ -1146,7 +1223,7 @@ function tick(dt) {
 frame();
 
 // Optional deep links for reviewing: ?play, ?myth=1..3, ?over
-if (params.has('play') || params.has('myth') || params.has('over')) {
+if (params.has('play') || params.has('myth') || params.has('over') || params.has('pack')) {
   startGame();
   if (params.has('myth')) {
     const n = Math.max(1, Math.min(3, +params.get('myth') || 1));
@@ -1154,6 +1231,7 @@ if (params.has('play') || params.has('myth') || params.has('over')) {
     setTimeout(() => { openMyth(n - 1); G.mythOpenedAt = 0; updateHUD(true); }, 400);
   }
   if (params.has('over')) { G.mythsFound = 2; G.kibbles = 48; G.score = 1730; G.distance = 612; gameOver('hearts'); showOverScreen(); }
+  if (params.has('pack')) spawn('product', 2, -9); // review aid: show a pack up close
   // ?sim=N steps N frames at 60fps (for automated checks); ?lane=0..2 holds a lane
   if (params.has('sim')) {
     const n = +params.get('sim'), lane = params.has('lane') ? +params.get('lane') : null;
