@@ -237,7 +237,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
   </div>
   <div class="hud-center">
     <div class="pill meter-wrap" style="display:block">
-      <div class="meter-head"><span>Healthy</span><b id="meterName">Buddy's weight</b><span>Overweight</span></div>
+      <div class="meter-head"><span>Healthy</span><b id="meterName">Rex's weight</b><span>Overweight</span></div>
       <div class="meter"><div id="meterMark"></div></div>
     </div>
   </div>
@@ -280,18 +280,18 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
     <div class="start-head">
       <img class="start-logo" src="assets/hills-logo-box.png" alt="Hill's">
       <div>
-        <h1 class="tagline" id="startTitle">Help Buddy on his<br>weight loss journey!</h1>
-        <p class="subhead">Hill’s nutrition offers proven weight loss in as little as 5 weeks.*</p>
+        <h1 class="tagline" id="startTitle">Help Rex on his<br>weight loss journey!</h1>
+        <p class="subhead">Proven weight loss in as little as 5 weeks* with Hill’s Science Plan Perfect Weight.</p>
       </div>
     </div>
     <div class="start-grid">
       <div>
         <div class="stage" id="stage">
-          <div class="stage-name"><small id="stageTag">Meet your runner</small><span id="stageName">Buddy</span></div>
+          <div class="stage-name"><small id="stageTag">Meet your runner</small><span id="stageName">Rex</span></div>
           <img class="stage-bag prod-img" alt="">
         </div>
         <div class="picker" role="radiogroup" aria-label="Choose your pet">
-          <button class="pick on" data-pet="dog" role="radio" aria-checked="true"><span class="em">🐶</span>Buddy the dog</button>
+          <button class="pick on" data-pet="dog" role="radio" aria-checked="true"><span class="em">🐶</span>Rex the dog</button>
           <button class="pick" data-pet="cat" role="radio" aria-checked="false"><span class="em">🐱</span>Bella the cat</button>
         </div>
       </div>
@@ -382,7 +382,7 @@ const MYTHS = [
 // One entry per playable pet. The chosen pet decides the 3D character, products, posters and copy.
 const PETS = {
   dog: {
-    name: 'Buddy', he: 'he', his: 'his', him: 'him', species: 'dog',
+    name: 'Rex', he: 'he', his: 'his', him: 'him', species: 'dog',
     productName: 'Hill’s Science Plan Perfect Weight Medium Adult',
     productClaim: 'Clinically proven nutrition to reach and maintain a healthy weight. Proven weight loss in as little as 5 weeks.*',
     productImage: 'assets/product-dog.png',
@@ -390,8 +390,8 @@ const PETS = {
     ctaUrl: 'https://www.hillspet.co.uk/',
     // funny "time passes" lines for weeks 1-4 (week 5 ends the run)
     weeks: [
-      'Buddy’s collar suddenly feels roomier.',
-      'Buddy can see his own paws again!',
+      'Rex’s collar suddenly feels roomier.',
+      'Rex can see his own paws again!',
       'The sofa cushions are sending thank-you notes.',
       'Squirrels in the park are getting nervous.',
     ],
@@ -442,7 +442,7 @@ function applyPetCopy() {
   $('stageName').textContent = `${P.name} the ${P.species}`;
   $('startTitle').innerHTML = `Help ${P.name} on ${P.his}<br>weight loss journey!`;
   $('playBtn').textContent = `Let's run with ${P.name}! ▶`;
-  $('pauseText').textContent = P.species === 'dog' ? 'Buddy is waiting for you, tail wagging.' : 'Bella is waiting for you, tail swishing.';
+  $('pauseText').textContent = P.species === 'dog' ? 'Rex is waiting for you, tail wagging.' : 'Bella is waiting for you, tail swishing.';
   const legal = `Always talk to your veterinarian about your ${P.species}'s ideal weight and before changing ${P.his} diet.`;
   $('startLegal').textContent = $('overLegal').textContent = legal;
   document.querySelectorAll('.pick').forEach(b => {
