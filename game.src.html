@@ -105,6 +105,8 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
 .how{background:#fff;border-radius:16px;padding:10px 12px;display:flex;gap:10px;align-items:center;border:2px solid var(--light-gray)}
 .how .ico{font-size:24px;width:34px;text-align:center;flex:none}
 .how .ico img{width:auto;height:48px;object-fit:contain}
+.how .ico.duo{display:flex!important;align-items:flex-end;justify-content:center;gap:2px;font-size:24px!important}
+.how .ico.duo svg{width:20px;height:24px;flex:none}
 .how b{display:block;font-size:14px;color:var(--navy)}
 .how span{font-size:12.5px;color:var(--muted);font-weight:700;line-height:1.3}
 .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:12.5px;color:var(--muted);font-weight:800;margin:4px 0 16px}
@@ -236,11 +238,11 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
       <img class="prod-img" alt="">
       <div><b id="packVal">0</b><span class="lbl">Hill's packs</span></div>
     </div>
-    <div class="hud-stat week-stat" id="weekPill" title="Every 13 seconds = 1 week">
+    <div class="hud-stat week-stat" id="weekPill" title="Every 15 seconds = 1 week">
       <div class="stat-top"><span class="lbl">Week</span><b id="weekVal">1/5</b><span class="week-time" id="weekTime">1:05</span></div>
       <div class="bar"><div id="weekFill"></div></div>
     </div>
-    <div class="hud-stat kib-stat" title="Kibbles until the next free Hill's pack">
+    <div class="hud-stat kib-stat" title="Kibbles until the next Hill's pack">
       <div class="stat-top"><span class="kib"></span><b id="kibVal">0/20</b><span class="lbl">next pack</span></div>
       <div class="bar"><div id="kibFill"></div></div>
     </div>
@@ -308,10 +310,9 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
       </div>
       <div class="start-info">
         <div class="howto">
-          <div class="how"><div class="ico"><span class="kib" style="width:30px;height:24px"></span></div><div><b>Collect 20 kibbles and earn one Hill’s pack.</b></div></div>
-          <div class="how"><div class="ico">🍔</div><div><b>Avoid junk food and obstacles.</b></div></div>
+          <div class="how"><div class="ico"><span class="kib" style="width:30px;height:24px"></span></div><div><b>Target the kibbles to lose weight and run faster.</b></div></div>
+          <div class="how"><div class="ico duo">🍔<svg viewBox="0 0 24 28" aria-hidden="true"><path d="M9.5 2h5l5 21h-15z" fill="#ff7a1a"/><path d="M8.3 9h7.4l1 4.5H7.3zM6.4 17h11.2l1 4H5.4z" fill="#fff"/><rect x="2" y="23" width="20" height="4" rx="1.5" fill="#34363B"/></svg></div><div><b>Avoid junk food and obstacles.</b></div></div>
           <div class="how"><div class="ico"><img src="assets/vet.png" alt=""></div><div><b>Learn from the vet and bust some myths about weight loss.</b></div></div>
-          <div class="how"><div class="ico"><img class="prod-img" alt=""></div><div><b>See how many packs you can collect in 5 weeks!</b></div></div>
         </div>
         <div class="controls">
           <span><span class="key">←</span><span class="key">→</span> move</span>
@@ -373,10 +374,10 @@ import * as THREE from 'three';
    by Hill's regulatory/legal before sending).
    ===================================================================== */
 const CONFIG = {
-  weekSeconds: 13,      // every 13 seconds of running = 1 week
+  weekSeconds: 15,      // every 15 seconds of running = 1 week
   totalWeeks: 5,        // the run lasts 5 weeks ("proven weight loss in as little as 5 weeks")
-  kibblesPerPack: 20,   // every 20 kibbles a free Hill's pack appears on the road
-  vetTimes: [4, 18, 32, 46], // seconds into the run when a vet house is sent down the road
+  kibblesPerPack: 20,   // every 20 kibbles a Hill's pack appears on the road
+  vetTimes: [5, 21, 38, 55], // seconds into the run when a vet house is sent down the road
   footnote: '* Hill’s data on file.',
   learnUrl: 'https://www.hillspet.co.uk/',
 };
@@ -388,7 +389,7 @@ const MYTHS = [
   { myth: 'Changing pets’ diets can leave pets hungry and begging for food.',
     truth: 'With the right nutrition, pets will feel full and satisfied after every meal.', learn: true },
   { myth: 'Slowing down is a normal sign of pets getting older.',
-    truth: 'Even a little bit of weight can place stress on pets’ joints, heart, and overall vitality.', learn: false },
+    truth: 'Even if they’re getting older, weight can still be the main issue that restricts pets’ mobility.', learn: true },
 ];
 
 // One entry per playable pet. The chosen pet decides the 3D character, products, posters and copy.
@@ -1137,7 +1138,7 @@ function spawn(kind, lane, z, y = 0) {
   scene.add(obj); entities.push(e);
   return e;
 }
-// Free Hill's pack: dropped a little way ahead, with that stretch of lane cleared
+// Hill's pack: dropped a little way ahead, with that stretch of lane cleared
 function dropPack(lane, z) {
   for (let i = entities.length - 1; i >= 0; i--) {
     const e = entities[i];
@@ -1228,7 +1229,7 @@ const Sound = {
   junk() { this.tone(260, 0.3, 'sawtooth', 0.06, 80); },
   hit() { this.tone(160, 0.35, 'square', 0.1, 45); },
   bag() { if (!this.ctx) return; const t = this.ctx.currentTime; [523, 659, 784, 1047].forEach((f, i) => this.tone(f, 0.22, 'triangle', 0.09, null, t + i * 0.08)); },
-  // free Hill's pack: bright rising arpeggio with a sparkle on top
+  // Hill's pack: bright rising arpeggio with a sparkle on top
   pack() {
     if (!this.ctx) return; const t = this.ctx.currentTime;
     [784, 988, 1175, 1568, 1976].forEach((f, i) => this.tone(f, 0.28, 'triangle', 0.085, null, t + i * 0.06));
@@ -1268,7 +1269,7 @@ const G = {
   invuln: 0, lane: 1, x: 0, y: 0, vy: 0, nextRowAt: 0, mythsFound: 0, vetIdx: 0, vetQueued: false,
   tipIndex: 0, weeks: 0, phase: 0, shake: 0, mythOpenedAt: 0, overReason: '', overTimer: 0, jumpBuffer: 0,
 };
-// Pets start very chubby and slim down every week (13 s) and with every Hill's pack.
+// Pets start very chubby and slim down every week (15 s) and with every Hill's pack.
 const START_WEIGHT = 90, MAX_HEARTS = 3, HEALTHY = 25, WEEK_LOSS = 12, PACK_LOSS = 5, JUNK_GAIN = 4;
 const RUN_SECONDS = CONFIG.weekSeconds * CONFIG.totalWeeks;
 
@@ -1289,9 +1290,9 @@ function startGame() {
   $('overScreen').classList.add('hidden');
   $('hud').classList.remove('hidden');
   G.state = 'play';
-  // before everything: a free sample pack right ahead
+  // before everything: a first Hill's pack right ahead
   dropPack(1, -16).sample = true;
-  toast(`<b>Free sample!</b> Grab ${P.name}'s first Hill's pack.`, 3200);
+  toast(`<b>Hill’s Perfect Weight</b> Start ${P.name}'s journey with targeted nutrition.`, 3200);
 }
 
 function moveLane(dir) {
@@ -1383,7 +1384,7 @@ function closeMyth() {
   G.state = 'play';
   G.invuln = Math.max(G.invuln, 1.2);
   if (deferredWeekPop) { showWeekPop(...deferredWeekPop); deferredWeekPop = null; }
-  if (G.mythsFound === MYTHS.length) toast('<b>Myth Buster!</b> All 3 myths busted. Now collect as many Hill’s packs as you can!');
+  if (G.mythsFound === MYTHS.length) toast('<b>Myth Buster!</b> All 3 myths busted. Keep going to finish the 5 weeks!');
 }
 $('vBtn').addEventListener('click', e => { e.stopPropagation(); closeMyth(); });
 
@@ -1395,10 +1396,10 @@ function collect(e, i) {
     burst(pos, 0xc48743, 5, 3);
     Sound.kibble();
     if (G.kibbles % CONFIG.kibblesPerPack === 0) {
-      // every 20 kibbles: a free Hill's pack drops onto the road ahead
+      // every 20 kibbles: a Hill's pack drops onto the road ahead
       const lane = pick([0, 1, 2]);
       dropPack(lane, -30);
-      floatText(`${CONFIG.kibblesPerPack} kibbles! Free Hill's pack ahead`, 'good');
+      floatText(`${CONFIG.kibblesPerPack} kibbles! Hill's pack ahead`, 'good');
     }
   } else if (e.cat === 'junk') {
     G.weight = Math.min(100, G.weight + JUNK_GAIN);
@@ -1413,7 +1414,7 @@ function collect(e, i) {
     Sound.pack();
     const pill = document.querySelector('.pack-stat');
     pill.classList.remove('bump'); void pill.offsetWidth; pill.classList.add('bump');
-    floatText(e.sample ? 'Free sample! +1 pack' : "+1 Hill's pack!", 'good');
+    floatText("+1 Hill's pack!", 'good');
     if (!e.sample && G.packs % 2 === 0) toast(P.tips[G.tipIndex++ % P.tips.length], 3500);
   } else if (e.cat === 'vet') {
     burst(pos.setY(1.2), 0x6396C9, 22, 6); burst(pos, 0xffffff, 12, 5);
@@ -1433,7 +1434,7 @@ function showWeekPop(html, final) {
   setTimeout(() => { el.remove(); if (weekPopEl === el) weekPopEl = null; }, final ? 3200 : 2300);
 }
 
-// Every 13 seconds a week on Perfect Weight flies by and the pet visibly slims down.
+// Every 15 seconds a week on Perfect Weight flies by and the pet visibly slims down.
 function weekPassed() {
   G.weeks++;
   G.weight = Math.max(0, G.weight - WEEK_LOSS);
@@ -1468,7 +1469,7 @@ function showOverScreen() {
   const done = G.overReason === 'done';
   const packs = plural(G.packs, "Hill's pack", "Hill's packs"), myths = plural(G.mythsFound, 'myth', 'myths');
   $('overTitle').textContent = done ? 'You did it!' : `${P.name} didn't make it!`;
-  $('overText').textContent = done ? `You collected ${packs} and busted ${myths}.` : `You only collected ${packs} and busted ${myths}.`;
+  $('overText').textContent = done ? 'You completed Hill’s 5-Week weight loss challenge!' : `You only collected ${packs} and busted ${myths}.`;
   $('recap').innerHTML = MYTHS.map((m, i) => `
     <div class="recap-item">
       <div class="row"><span class="m">MYTH #${i + 1}: ${m.myth}</span>

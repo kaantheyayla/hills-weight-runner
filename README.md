@@ -3,9 +3,9 @@
 3D isometric runner (three.js) for Hill's Science Plan Perfect Weight.
 The player picks **Buddy the dog** or **Bella the cat**, who start out very chubby (and slow).
 
-- **5-week run:** every 13 seconds = 1 week; the run ends after 5 weeks (65 s) with "You did it!".
+- **5-week run:** every 15 seconds = 1 week; the run ends after 5 weeks (75 s) with "You did it! You completed Hill’s 5-Week weight loss challenge!".
   Lose all 3 lives or eat too much junk and it ends with "Buddy/Bella didn't make it!".
-- **Hill's packs:** the run starts with a free sample pack; after that every 20 kibbles drops a free pack on the road.
+- **Hill's packs:** the run starts with one pack on the road; after that every 20 kibbles drops another. Wording avoids "free", "earn" or "win" so nobody thinks they win real products.
   Packs are the score. Matching dog/cat packshots.
 - **Vet myths:** a vet stands beside a dog house (dog game) or cat house (cat game) on the road.
   Run into the house and the animated vet busts one of 3 myths.
@@ -14,7 +14,7 @@ The player picks **Buddy the dog** or **Bella the cat**, who start out very chub
 ## Files
 - `index.html`: **the deliverable**. Single self-contained file (images embedded), ~1.5 MB.
 - `game.src.html`: source to edit. Timings, myths, products, funny week lines and links are in `CONFIG` / `MYTHS` / `PETS` at the top of the script.
-- `assets/`: packshots, `hills-logo.png`, `vet.png` and the `poster-dog.jpg` / `poster-cat.jpg` billboards.
+- `assets/`: packshots, `hills-logo-box.png` (bordered logo), `vet.png` and the `poster-dog.jpg` / `poster-cat.jpg` billboards.
 - `build.mjs`: run `node build.mjs` after editing the source to regenerate `index.html`.
 
 ## Sending it to clients
