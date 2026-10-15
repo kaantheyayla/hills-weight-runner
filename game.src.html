@@ -1264,7 +1264,7 @@ function resetGame() {
   clearEntities();
   Object.assign(G, {
     speed: 0, distance: 0, time: 0, kibbles: 0, packs: 0, weight: START_WEIGHT, hearts: MAX_HEARTS, invuln: 0,
-    lane: 1, x: 0, y: 0, vy: 0, nextRowAt: 22, mythsFound: 0, vetIdx: 0, vetQueued: false, tipIndex: 0, weeks: 0, shake: 0, jumpBuffer: 0,
+    lane: 1, x: 0, y: 0, vy: 0, nextRowAt: 10, mythsFound: 0, vetIdx: 0, vetQueued: false, tipIndex: 0, weeks: 0, shake: 0, jumpBuffer: 0,
   });
   pet.g.visible = true;
   updateHUD(true);
@@ -1279,6 +1279,8 @@ function startGame() {
   G.state = 'play';
   // before everything: a first Hill's pack right ahead
   dropPack(1, -16).sample = true;
+  // kibbles start straight after it, weaving across the lanes until the first random rows arrive
+  kibbleTrail(1, -20); kibbleTrail(0, -31); kibbleTrail(2, -42); kibbleTrail(1, -53);
   toast(`<b>Hill’s Perfect Weight</b> Start ${P.name}'s journey with targeted nutrition.`, 3200);
 }
 
