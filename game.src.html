@@ -158,7 +158,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
 .stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
 .stage-name{position:absolute;left:14px;top:12px;background:#fff;border-radius:12px;padding:6px 12px;font-weight:900;color:var(--navy);font-size:18px;box-shadow:0 4px 14px rgba(0,54,114,.12)}
 .stage-name small{display:block;font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
-.stage-bag{position:absolute;right:14px;bottom:14px;width:104px;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25));transform:rotate(6deg)}
+.stage-bag{position:absolute;right:14px;bottom:14px;width:118px;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25));transform:rotate(6deg)}
 .picker{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .pick{background:#fff;border:3px solid var(--light-gray);border-radius:16px;padding:10px 12px;font-weight:800;color:var(--navy);font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
 .pick .em{font-size:24px}
@@ -205,7 +205,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
   .start-logo,.end-head .start-logo{height:58px}
   .subhead{margin-top:10px}
   .stage{height:240px}
-  .stage-bag{width:70px}
+  .stage-bag{width:80px}
   .start-info .how{padding:8px 12px}
   .start-info .how b{font-size:14px}
   .cta img{height:130px}
@@ -226,7 +226,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
   <div class="hud-left">
     <img class="hud-logo" src="assets/hills-logo-box.png" alt="Hill's">
     <div class="hud-card">
-    <div class="hud-stat week-stat" id="weekPill" title="Every 15 seconds = 1 week">
+    <div class="hud-stat week-stat" id="weekPill" title="Every 12 seconds = 1 week">
       <div class="stat-top"><span class="lbl">Week</span><b id="weekVal">1/5</b><span class="week-time" id="weekTime">1:05</span></div>
       <div class="bar"><div id="weekFill"></div></div>
     </div>
@@ -258,7 +258,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
   <div class="vet-card">
     <div class="confetti" id="confetti"></div>
     <div class="vet-talk">
-      <div class="b-who"><span>The vet says…</span><span class="tag" id="vTag">MYTH #1</span></div>
+      <div class="b-who"><span class="tag" id="vTag">MYTH #1</span></div>
       <div class="b-myth"><s id="vMyth"></s><span class="stamp">BUSTED</span></div>
       <div class="b-fact"><span class="tag fact">TRUTH</span><p id="vTruth"></p></div>
       <div class="b-prod" id="vLearn"><img class="prod-img" alt=""><p>Learn more about targeted nutrition for weight loss at <a id="vLink" target="_blank" rel="noopener">Hill's.com</a></p></div>
@@ -299,7 +299,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
         <div class="howto">
           <div class="how"><div class="ico"><span class="kib" style="width:30px;height:24px"></span></div><div><b>Target the kibbles to lose weight and run faster.</b></div></div>
           <div class="how"><div class="ico duo">🍔<svg viewBox="0 0 24 28" aria-hidden="true"><path d="M9.5 2h5l5 21h-15z" fill="#ff7a1a"/><path d="M8.3 9h7.4l1 4.5H7.3zM6.4 17h11.2l1 4H5.4z" fill="#fff"/><rect x="2" y="23" width="20" height="4" rx="1.5" fill="#34363B"/></svg></div><div><b>Avoid junk food and obstacles.</b></div></div>
-          <div class="how"><div class="ico"><img src="assets/vet.png" alt=""></div><div><b>Learn from the vet and bust some myths about weight loss.</b></div></div>
+          <div class="how"><div class="ico"><img src="assets/vet.png" alt=""></div><div><b>Learn from the vet and bust myths about weight loss.</b></div></div>
         </div>
         <div class="controls">
           <span><span class="key">←</span><span class="key">→</span> move</span>
@@ -361,20 +361,20 @@ import * as THREE from 'three';
    by Hill's regulatory/legal before sending).
    ===================================================================== */
 const CONFIG = {
-  weekSeconds: 15,      // every 15 seconds of running = 1 week
+  weekSeconds: 12,      // every 12 seconds of running = 1 week
   totalWeeks: 5,        // the run lasts 5 weeks ("proven weight loss in as little as 5 weeks")
   kibblesPerPack: 20,   // every 20 kibbles a Hill's pack appears on the road
-  vetTimes: [5, 21, 38, 55], // seconds into the run when a vet house is sent down the road
+  vetTimes: [4, 17, 30, 44], // seconds into the run when a vet house is sent down the road
   footnote: '* Hill’s data on file.',
   learnUrl: 'https://www.hillspet.co.uk/',
 };
 
 // The vet busts these myths, one per vet house (same for dogs and cats)
 const MYTHS = [
-  { myth: 'Weight loss is about restricting calories.',
+  { myth: 'Weight loss is about eating less.',
     truth: 'With the right nutrition, pets can still eat a full meal and lose weight.', learn: true },
   { myth: 'Changing pets’ diets can leave pets hungry and begging for food.',
-    truth: 'With the right nutrition, pets will feel full and satisfied after every meal.', learn: true },
+    truth: 'Properly balanced food leave pets feeling full and satisfied after every meal.', learn: true },
   { myth: 'Slowing down is a normal sign of pets getting older.',
     truth: 'Even if they’re getting older, weight can still be the main issue that restricts pets’ mobility.', learn: true },
 ];
@@ -395,11 +395,6 @@ const PETS = {
       'The sofa cushions are sending thank-you notes.',
       'Squirrels in the park are getting nervous.',
     ],
-    tips: [
-      '<b>Tip:</b> You should be able to feel your dog’s ribs easily under a thin layer of fat.',
-      '<b>Tip:</b> Ask your vet to check your dog’s body condition score at every visit.',
-      '<b>Tip:</b> Measure every meal. Guessing portions often means overfeeding.',
-    ],
   },
   cat: {
     name: 'Bella', he: 'she', his: 'her', him: 'her', species: 'cat',
@@ -413,11 +408,6 @@ const PETS = {
       'Bella nailed the jump to the windowsill!',
       'The laser dot never stood a chance.',
       'Bella’s purr sounds lighter somehow.',
-    ],
-    tips: [
-      '<b>Tip:</b> You should be able to feel your cat’s ribs easily under a thin layer of fat.',
-      '<b>Tip:</b> Ask your vet to check your cat’s body condition score at every visit.',
-      '<b>Tip:</b> Measure every meal. Guessing portions often means overfeeding.',
     ],
   },
 };
@@ -1048,7 +1038,7 @@ const productMat = new THREE.SpriteMaterial({ map: productTex.dog, transparent: 
 const ringMat = new THREE.MeshBasicMaterial({ color: 0x6396C9, transparent: true, opacity: 0.75, side: THREE.DoubleSide });
 function makeProduct() {
   const g = new THREE.Group();
-  const s = new THREE.Sprite(productMat); s.scale.set(1.9, 3.77, 1); s.position.y = 2.05; g.add(s);
+  const s = new THREE.Sprite(productMat); s.scale.set(2.16, 3.77, 1); s.position.y = 2.05; g.add(s);
   const ring = new THREE.Mesh(geo('ring', () => new THREE.RingGeometry(1.0, 1.3, 32)), ringMat);
   ring.rotation.x = -Math.PI / 2; ring.position.y = 0.05; g.add(ring);
   const stars = new THREE.Group(); g.add(stars);
@@ -1254,9 +1244,9 @@ $('muteBtn').addEventListener('click', e => {
 const G = {
   state: 'menu', speed: 0, distance: 0, time: 0, kibbles: 0, packs: 0, weight: 90, hearts: 3,
   invuln: 0, lane: 1, x: 0, y: 0, vy: 0, nextRowAt: 0, mythsFound: 0, vetIdx: 0, vetQueued: false,
-  tipIndex: 0, weeks: 0, phase: 0, shake: 0, mythOpenedAt: 0, overReason: '', overTimer: 0, jumpBuffer: 0,
+  weeks: 0, phase: 0, shake: 0, mythOpenedAt: 0, overReason: '', overTimer: 0, jumpBuffer: 0,
 };
-// Pets start very chubby and slim down every week (15 s) and with every Hill's pack.
+// Pets start very chubby and slim down every week (12 s) and with every Hill's pack.
 const START_WEIGHT = 90, MAX_HEARTS = 3, HEALTHY = 25, WEEK_LOSS = 12, PACK_LOSS = 5, PACK_KIBBLES = 5, JUNK_GAIN = 4;
 const RUN_SECONDS = CONFIG.weekSeconds * CONFIG.totalWeeks;
 
@@ -1264,7 +1254,7 @@ function resetGame() {
   clearEntities();
   Object.assign(G, {
     speed: 0, distance: 0, time: 0, kibbles: 0, packs: 0, weight: START_WEIGHT, hearts: MAX_HEARTS, invuln: 0,
-    lane: 1, x: 0, y: 0, vy: 0, nextRowAt: 10, mythsFound: 0, vetIdx: 0, vetQueued: false, tipIndex: 0, weeks: 0, shake: 0, jumpBuffer: 0,
+    lane: 1, x: 0, y: 0, vy: 0, nextRowAt: 10, mythsFound: 0, vetIdx: 0, vetQueued: false, weeks: 0, shake: 0, jumpBuffer: 0,
   });
   pet.g.visible = true;
   updateHUD(true);
@@ -1373,14 +1363,11 @@ function closeMyth() {
 $('vBtn').addEventListener('click', e => { e.stopPropagation(); closeMyth(); });
 
 /* ---------- collisions ---------- */
-// every 20 kibbles a Hill's pack drops onto the road ahead (quietly), with a vet tip every other one
+// every 20 kibbles a Hill's pack drops onto the road ahead (quietly)
 function addKibbles(n) {
   const per = CONFIG.kibblesPerPack, before = Math.floor(G.kibbles / per);
   G.kibbles += n;
-  for (let k = before + 1; k <= Math.floor(G.kibbles / per); k++) {
-    dropPack(pick([0, 1, 2]), -30);
-    if (k % 2 === 0) toast(P.tips[G.tipIndex++ % P.tips.length], 3500);
-  }
+  for (let k = before + 1; k <= Math.floor(G.kibbles / per); k++) dropPack(pick([0, 1, 2]), -30);
 }
 function collect(e, i) {
   const pos = e.obj.position.clone(); pos.y += 0.4;
@@ -1419,7 +1406,7 @@ function showWeekPop(html, final) {
   setTimeout(() => { el.remove(); if (weekPopEl === el) weekPopEl = null; }, final ? 3200 : 2300);
 }
 
-// Every 15 seconds a week on Perfect Weight flies by and the pet visibly slims down.
+// Every 12 seconds a week on Perfect Weight flies by and the pet visibly slims down.
 function weekPassed() {
   G.weeks++;
   G.weight = Math.max(0, G.weight - WEEK_LOSS);

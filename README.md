@@ -3,7 +3,7 @@
 3D isometric runner (three.js) for Hill's Science Plan Perfect Weight.
 The player picks **Rex the dog** or **Bella the cat**, who start out very chubby (and slow).
 
-- **5-week run:** every 15 seconds = 1 week; the run ends after 5 weeks (75 s) with "You did it! You completed Hill’s 5-Week weight loss challenge!".
+- **5-week run:** every 12 seconds = 1 week; the run ends after 5 weeks (60 s) with "You did it! You completed Hill’s 5-Week weight loss challenge!".
   Lose all 3 lives or eat too much junk and it ends with "Rex/Bella didn't make it!".
 - **Hill's packs:** the run starts with one pack on the road; after that every 20 kibbles drops another. Wording avoids "free", "earn" or "win" so nobody thinks they win real products.
   Packs are the score. Matching dog/cat packshots.
