@@ -287,7 +287,6 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
     <div class="start-grid">
       <div>
         <div class="stage" id="stage">
-          <div class="stage-name"><small id="stageTag">Meet your runner</small><span id="stageName">Rex</span></div>
           <img class="stage-bag prod-img" alt="">
         </div>
         <div class="picker" role="radiogroup" aria-label="Choose your pet">
@@ -299,14 +298,14 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
         <div class="howto">
           <div class="how"><div class="ico"><span class="kib" style="width:30px;height:24px"></span></div><div><b>Target the kibbles to lose weight and run faster.</b></div></div>
           <div class="how"><div class="ico duo">🍔<svg viewBox="0 0 24 28" aria-hidden="true"><path d="M9.5 2h5l5 21h-15z" fill="#ff7a1a"/><path d="M8.3 9h7.4l1 4.5H7.3zM6.4 17h11.2l1 4H5.4z" fill="#fff"/><rect x="2" y="23" width="20" height="4" rx="1.5" fill="#34363B"/></svg></div><div><b>Avoid junk food and obstacles.</b></div></div>
-          <div class="how"><div class="ico"><img src="assets/vet.png" alt=""></div><div><b>Learn from the vet and bust myths about weight loss.</b></div></div>
+          <div class="how"><div class="ico"><img src="assets/vet.png" alt=""></div><div><b>Bust myths about weight loss.</b></div></div>
         </div>
         <div class="controls">
           <span><span class="key">←</span><span class="key">→</span> move</span>
           <span><span class="key">↑</span> / <span class="key">Space</span> jump</span>
           <span>Mobile: swipe to move, tap to jump</span>
         </div>
-        <button class="btn block" id="playBtn" style="font-size:19px;padding:15px">Let's run! ▶</button>
+        <button class="btn block" id="playBtn" style="font-size:19px;padding:15px">Run with Rex ▶</button>
       </div>
     </div>
     <p class="legal">* Hill’s data on file.<br><span id="startLegal"></span></p>
@@ -429,9 +428,8 @@ function applyPetCopy() {
   $('vLink').href = P.ctaUrl;
   $('mythSlots').innerHTML = MYTHS.map(() => '<img src="assets/vet.png" alt="">').join('');
   $('meterName').textContent = `${P.name}'s weight`;
-  $('stageName').textContent = `${P.name} the ${P.species}`;
   $('startTitle').innerHTML = `Help ${P.name} on ${P.his}<br>weight loss journey!`;
-  $('playBtn').textContent = `Let's run with ${P.name}! ▶`;
+  $('playBtn').textContent = `Run with ${P.name} ▶`;
   $('pauseText').textContent = P.species === 'dog' ? 'Rex is waiting for you, tail wagging.' : 'Bella is waiting for you, tail swishing.';
   const legal = `Always talk to your veterinarian about your ${P.species}'s ideal weight and before changing ${P.his} diet.`;
   $('startLegal').textContent = $('overLegal').textContent = legal;
