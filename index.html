@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#003672">
 <title>Perfect Weight Run | Hill's</title>
-<meta name="description" content="Losing weight. Adding life. Run with Bobby the dog or Bella the cat, eat right and bust 3 common pet weight myths. Brought to you by Hill's Science Plan Perfect Weight.">
+<meta name="description" content="Losing weight. Adding life. Run with Rex the dog or Bella the cat, eat right and bust 3 common pet weight myths. Brought to you by Hill's Science Plan Perfect Weight.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -308,7 +308,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
         <button class="btn block" id="playBtn" style="font-size:19px;padding:15px">Run with Rex ▶</button>
       </div>
     </div>
-    <p class="legal">* Hill’s data on file.<br><span id="startLegal"></span></p>
+    <p class="legal">*AI Generated &nbsp;* Hill’s data on file.<br><span id="startLegal"></span></p>
   </div>
 </div>
 
@@ -549,7 +549,7 @@ road.rotation.x = -Math.PI / 2; road.position.set(0, 0.02, -50); road.receiveSha
 scene.add(road);
 
 /* =====================================================================
-   Pets: Bobby the beagle and Bella the tabby. Smooth, rounded shapes with
+   Pets: Rex the beagle and Bella the tabby. Smooth, rounded shapes with
    fur markings painted into vertex colours. Both share one rig
    { g, bodyPivot, body, head, tail, legs, tongue, earL, earR } so the
    same animation code drives them.
@@ -595,7 +595,6 @@ function addEyes(head, x, y, z, r, iris, slit) {
 
 // Beagle colours, like the dog on the Perfect Weight pack
 const BG_TAN = 0xc7843f, BG_TAN_DARK = 0x9a5a26, BG_WHITE = 0xf7f3ec, BG_BLACK = 0x2b2622;
-const COLLAR = 0x0054A4, TAG = 0xB1CAE4;
 function buildDog(parent) {
   const g = new THREE.Group();
   const bodyPivot = new THREE.Group(); bodyPivot.position.y = 0.95; g.add(bodyPivot);
@@ -621,9 +620,6 @@ function buildDog(parent) {
   const earL = blob(sphere(0.2, 20, 16), BG_TAN_DARK, -0.4, -0.12, 0.02, head, 0.45, 1.6, 0.95); earL.rotation.z = 0.18;
   const earR = blob(sphere(0.2, 20, 16), BG_TAN_DARK, 0.4, -0.12, 0.02, head, 0.45, 1.6, 0.95); earR.rotation.z = -0.18;
   head.scale.setScalar(1.12);
-  const collar = blob(new THREE.TorusGeometry(0.35, 0.055, 10, 28), COLLAR, 0, 0.2, -0.66, bodyPivot, 1.05, 1, 1);
-  collar.rotation.x = Math.PI / 2 - 0.5;
-  blob(new THREE.CylinderGeometry(0.075, 0.075, 0.03, 16), TAG, 0, -0.05, -0.86, bodyPivot).rotation.x = Math.PI / 2 - 0.3;
 
   // happy upright tail with a white tip
   const tail = new THREE.Group(); tail.position.set(0, 0.22, 0.72); bodyPivot.add(tail);
@@ -681,9 +677,6 @@ function buildCat(parent) {
   };
   const earL = ear(-1), earR = ear(1);
   head.scale.setScalar(1.12);
-  const collar = blob(new THREE.TorusGeometry(0.29, 0.045, 10, 28), COLLAR, 0, 0.17, -0.62, bodyPivot);
-  collar.rotation.x = Math.PI / 2 - 0.5;
-  blob(new THREE.CylinderGeometry(0.06, 0.06, 0.025, 16), TAG, 0, -0.03, -0.79, bodyPivot).rotation.x = Math.PI / 2 - 0.3;
 
   // long striped tail that curls up at the tip
   const tail = new THREE.Group(); tail.position.set(0, 0.12, 0.68); bodyPivot.add(tail);
