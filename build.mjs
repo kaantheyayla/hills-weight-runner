@@ -3,7 +3,7 @@
 // Usage: node build.mjs
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
-const TYPES = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg' };
+const TYPES = { webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg' };
 const dir = new URL('.', import.meta.url);
 let out = readFileSync(new URL('game.src.html', dir), 'utf8');
 for (const f of readdirSync(new URL('assets/', dir))) {

@@ -31,33 +31,35 @@ button{font-family:inherit;cursor:pointer;border:0}
 #hud{position:fixed;left:0;right:0;top:0;padding:calc(12px + env(safe-area-inset-top)) 14px 0;display:flex;gap:12px;align-items:flex-start;justify-content:space-between;pointer-events:none;z-index:5}
 .hud-card,.pill{background:rgba(255,255,255,.95);border-radius:16px;box-shadow:0 6px 18px rgba(0,54,114,.16)}
 .pill{padding:6px 12px;display:flex;align-items:center;gap:8px;font-weight:800}
-.hud-card{padding:10px 12px;display:flex;flex-direction:column;gap:9px}
-.hud-left{width:188px;display:flex;flex-direction:column;gap:8px}
+.hud-card{padding:12px 15px;display:flex;flex-direction:column;gap:11px}
+.hud-left{width:236px;display:flex;flex-direction:column;gap:8px}
 .hud-left .hud-card .hud-stat:first-child{border-top:0;padding-top:0}
-.hud-logo{display:block;width:72px;height:72px}
-.hud-stat{border-top:1px solid var(--light-gray);padding-top:8px;display:flex;flex-direction:column;gap:5px}
+.hud-logo{display:block;width:84px;height:84px}
+.hud-stat{border-top:1px solid var(--light-gray);padding-top:10px;display:flex;flex-direction:column;gap:7px}
+#hud .lbl{font-size:12px}
+#hud .kib{width:20px;height:17px}
 .right-card .hud-stat:first-child{border-top:0;padding-top:0}
 .lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
 @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.35) rotate(-8deg)}100%{transform:scale(1)}}
 .stat-top{display:flex;align-items:center;gap:6px}
-.stat-top b{font-size:15px;font-weight:900;color:var(--navy)}
+.stat-top b{font-size:19px;font-weight:900;color:var(--navy)}
 .stat-top .lbl:last-child,.week-time{margin-left:auto}
-.week-time{font-size:11px;font-weight:800;color:var(--muted)}
-.bar{height:6px;border-radius:4px;background:var(--light-gray);overflow:hidden}
+.week-time{font-size:13px;font-weight:800;color:var(--muted)}
+.bar{height:8px;border-radius:4px;background:var(--light-gray);overflow:hidden}
 .bar div{height:100%;width:0;background:var(--accent-2);border-radius:4px;transition:width .2s}
 .kib{width:15px;height:13px;border-radius:38%;background:radial-gradient(circle at 34% 30%,#e2b06a 0,#c48743 55%,#94612b 100%);box-shadow:inset -1px -2px 0 rgba(90,55,20,.35);display:inline-block;flex:none}
-.hud-center{flex:1;max-width:360px;display:flex;flex-direction:column;align-items:center}
-.meter-wrap{width:100%;padding:9px 14px 11px}
-.meter-head{display:flex;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.hud-center{flex:1;max-width:440px;display:flex;flex-direction:column;align-items:center}
+.meter-wrap{width:100%;padding:11px 16px 14px}
+.meter-head{display:flex;justify-content:space-between;font-size:12.5px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .meter-head b{color:var(--navy)}
-.meter{position:relative;height:12px;border-radius:8px;background:linear-gradient(90deg,#B1CAE4 0%,#B1CAE4 22%,#6396C9 45%,#1260AA 70%,#003672 100%)}
-#meterMark{position:absolute;top:50%;width:22px;height:22px;margin-left:-11px;margin-top:-11px;border-radius:50%;background:#fff;border:3px solid var(--navy);transition:left .25s ease}
+.meter{position:relative;height:15px;border-radius:8px;background:linear-gradient(90deg,#B1CAE4 0%,#B1CAE4 22%,#6396C9 45%,#1260AA 70%,#003672 100%)}
+#meterMark{position:absolute;top:50%;width:26px;height:26px;margin-left:-13px;margin-top:-13px;border-radius:50%;background:#fff;border:3px solid var(--navy);transition:left .25s ease}
 .hud-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.right-card{min-width:150px}
+.right-card{min-width:190px}
 #hearts{display:flex;gap:4px}
-#hearts svg{width:22px;height:22px}
+#hearts svg{width:28px;height:28px}
 #mythSlots{display:flex;gap:6px;align-items:flex-end}
-#mythSlots img{width:auto;height:38px;object-fit:contain;filter:grayscale(1);opacity:.3;transition:all .4s}
+#mythSlots img{width:auto;height:48px;object-fit:contain;filter:grayscale(1);opacity:.3;transition:all .4s}
 #mythSlots img.on{filter:none;opacity:1;transform:scale(1.08)}
 .hud-btns{display:flex;gap:6px;pointer-events:auto}
 .icon-btn{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.95);box-shadow:0 6px 18px rgba(0,54,114,.16);color:var(--navy);display:grid;place-items:center}
@@ -170,7 +172,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
 .stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
 .stage-name{position:absolute;left:14px;top:12px;background:#fff;border-radius:12px;padding:6px 12px;font-weight:900;color:var(--navy);font-size:18px;box-shadow:0 4px 14px rgba(0,54,114,.12)}
 .stage-name small{display:block;font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
-.stage-bag{position:absolute;right:14px;bottom:14px;width:118px;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25));transform:rotate(6deg)}
+.stage-bag{position:absolute;right:16px;bottom:16px;width:150px;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}
 .picker{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .pick{background:#fff;border:3px solid var(--light-gray);border-radius:16px;padding:10px 12px;font-weight:800;color:var(--navy);font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
 .pick .em{font-size:24px}
@@ -199,17 +201,20 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
 @media (max-width:560px){
   #hud{padding-left:8px;padding-right:8px;gap:6px}
   .hud-card{padding:8px 9px;gap:7px;border-radius:14px}
-  .hud-left{width:140px}
+  .hud-left{width:158px}
   .hud-logo{width:52px;height:52px}
   .hud-stat{padding-top:6px;gap:4px}
-  .stat-top b{font-size:13px}
+  .stat-top b{font-size:15px}
+  #hud .lbl{font-size:10.5px}
+  .week-time{font-size:11.5px}
+  #hud .kib{width:16px;height:14px}
   .right-card{min-width:0}
   .right-card .lbl{display:none}
-  #hearts svg{width:17px;height:17px}
-  #mythSlots img{height:28px}
+  #hearts svg{width:21px;height:21px}
+  #mythSlots img{height:33px}
   .icon-btn{width:34px;height:34px}
   .hud-center{position:fixed;left:8px;right:8px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:none}
-  .meter-head{font-size:9px}
+  .meter-head{font-size:10.5px}
   .card.start,.card.end{padding:20px 16px 16px}
   .start-head{flex-direction:column;align-items:flex-start;gap:12px}
   .start-head,.end-head{margin-bottom:16px}
@@ -217,7 +222,7 @@ h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.15}
   .start-logo,.end-head .start-logo{height:58px}
   .subhead{margin-top:10px}
   .stage{height:240px}
-  .stage-bag{width:80px}
+  .stage-bag{width:104px}
   .start-info .how{padding:8px 12px}
   .start-info .how b{font-size:14px}
   .cta img{height:130px}
@@ -395,16 +400,16 @@ const CONFIG = {
     code: 'XXX',
     title: 'Congratulations! You’ve unlocked a Hill’s voucher.',
     text: 'Use this code on your next Hill’s purchase. Terms and conditions apply.',
-    intro: 'Complete all 5 weeks to unlock a Hill’s voucher!',
+    intro: 'Bust all the myths in 5 weeks and win a Hill’s voucher!',
     introText: 'Terms and conditions apply.',
   },
 };
 
 // The vet busts these myths, one per vet house (same for dogs and cats)
 const MYTHS = [
-  { myth: 'Weight loss is about eating less.',
+  { myth: 'Weight loss is about eating smaller portions.',
     truth: 'With the right nutrition, pets can still eat a full meal and lose weight.', learn: true },
-  { myth: 'Changing pets’ diets can leave pets hungry and begging for food.',
+  { myth: 'Changing pets’ food can leave pets hungry and begging for food.',
     truth: 'Properly balanced food leave pets feeling full and satisfied after their meal.', learn: true },
   { myth: 'Ageing is the main reason for pets slowing down later in life.',
     truth: 'Even if they’re getting older, weight can still be the primary issue that restricts pets’ mobility.', learn: true },
@@ -416,7 +421,7 @@ const PETS = {
     name: 'Rex', he: 'he', his: 'his', him: 'him', species: 'dog',
     productName: 'Hill’s Science Plan Perfect Weight Medium Adult',
     productClaim: 'Clinically proven nutrition to reach and maintain a healthy weight. Proven weight loss in as little as 5 weeks.*',
-    productImage: 'assets/product-dog.png',
+    productImage: 'assets/product-dog.webp',
     poster: 'assets/poster-dog.jpg',
     ctaUrl: 'https://www.hillspet.co.uk/',
     // funny "time passes" lines for weeks 1-4 (week 5 ends the run)
@@ -431,7 +436,7 @@ const PETS = {
     name: 'Bella', he: 'she', his: 'her', him: 'her', species: 'cat',
     productName: 'Hill’s Science Plan Perfect Weight Adult',
     productClaim: 'Clinically proven nutrition to reach and maintain a healthy weight. Proven weight loss in as little as 5 weeks.*',
-    productImage: 'assets/product-cat.png',
+    productImage: 'assets/product-cat.webp',
     poster: 'assets/poster-cat.jpg',
     ctaUrl: 'https://www.hillspet.co.uk/',
     weeks: [
@@ -1722,6 +1727,7 @@ function renderPreview(dt, t) {
     preview.renderer.setSize(w, h, false);
     preview.camera.aspect = w / h;
     preview.camera.zoom = Math.min(1.1, h / 330, w / 300);
+    preview.camera.setViewOffset(w, h, w * 0.13, 0, w, h);   // nudge the pet left so the upright pack does not cover it
     preview.camera.updateProjectionMatrix();
   }
   const p = preview.pets[P.species];
